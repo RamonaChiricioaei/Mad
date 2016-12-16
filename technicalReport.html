@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<style>
+			article > section:first-of-type ol::before {
+				display: block;
+				float: center;
+				width: 150px;
+				margin-left: -150px;
+				font-variant: small-caps;
+				color: #9E9E9E;
+			}
+			article > section:first-of-type ol:first-of-type::before {
+				content: 'Authors';
+			}
+			article > section:first-of-type ol {
+				list-style-type: none;
+				margin-left: 150px;
+				counter-reset: affiliations;
+			}
+			article > section:first-of-type li {
+				display: inline;
+			}
+			article > section:first-of-type li::after {
+				content: ',';
+			}
+			article > section:first-of-type li:last-child::after {
+				content: normal;
+			}
+			article > section:first-of-type a[property="sa:roleAffiliation"] {
+				font-size: 12px;
+				vertical-align: super;
+			}
+			article > section:first-of-type ol:not(:first-of-type) li::before {
+				counter-increment: affiliations;
+				content: counter(affiliations, lower-latin) '.';
+				font-size: 12px;
+				display: inline;
+			}
+			article > section:first-of-type ol:not(:first-of-type)::before {
+				content: 'Affiliations';
+			}
+		</style>
+  	</head>
+ 	<body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/" bgcolor="b8c6cb">
+    	<!--<header>
+    		<p class="title">Universal Resource Recommender</p>
+      		<p class="subtitle">UReR</p>
+    	</header>-->
+	    <article typeof="schema:ScholarlyArticle" resource="#">
+		    <center><h1>MAd - Medical Web Advisor</h1></center>
+		    <section>
+				   <ol>
+						<li property="schema:author" typeof="sa:ContributorRole">
+							<a property="schema:author" href="https://github.com/RamonaAnca" typeof="schema:Person">
+								<span property="schema:givenName">Anca-Ramona</span>
+								<span property="schema:familyName">Bânțu</span>
+							</a>
+							<a href="#yahoo" property="sa:roleAffiliation" resource="http://mail.yahoo.com"></a>
+								<sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+									<a property="schema:email" href="mailto:bantu_anca@yahoo.com" title="corresponding author">&#9993;</a>
+								</sup>
+						</li><br>
+						<li property="schema:author" typeof="sa:ContributorRole">
+							<a property="schema:author" href="https://github.com/RamonaChiricioaei/Mad" typeof="schema:Person">
+								<span property="schema:givenName">Ramona</span>
+								<span property="schema:familyName">Chiricioaei</span>
+							</a>
+							<a href="#info" property="sa:roleAffiliation" resource="http://www.info.uaic.ro/bin/Main/"></a>
+								<sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+									<a property="schema:email" href="mailto:ramona.chiricioaei@info.uaic.ro" title="corresponding author">&#9993;</a>
+								</sup>
+						</li><br>
+					</ol>
+					<ol style="text-decoration: none;">
+							<a id="university" href="http://www.uaic.ro/" typeof="schema:CollegeOrUniversity" >
+								<span property="schema:name">"ALEXANDRU IOAN-CUZA" UNIVERSITY OF IAȘI</span>
+							</a>
+					</ol>
+					<ol style="text-decoration: none;">
+							<a id="infoiasi" href="http://www.info.uaic.ro/bin/Main/" typeof="schema:CollegeOrUniversity" >
+								<span property="schema:name">FACULTY OF COMPUTER SCIENCE, DISTRIBUTED SYSTEMS</span>
+							</a>
+					</ol>
+					
+		    </section>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<section typeof="sa:Abstract" id="abstract">
+		        <section><h2>Contents: </h2></section>
+	        	<p>
+					<section>1. Introduction </section>
+					<section>2. Architecture </section>
+					<section> 3. Knowledge sources </section>
+					<section> 4. Conclusion </section>
+				</p>
+			</section>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<section typeof="sa:Introduction">
+		        <section><h2>1. Introduction</h2></section>
+	        	<p>
+					<a href="https://github.com/RamonaChiricioaei/Mad">
+							<span property="schema:name">MAd-Medical Web Advisor</span>
+					</a>					is a hypermedia platform developed with the scope to be an elearning platform for middle and high school students.
+				</p>
+				<p>
+					The main idea is that not everyone has the skills to access knowledge sources like 
+							<a href="http://dbpedia.org/">
+								<span property="schema:name">DBpedia</span>
+							</a>
+					 or
+					 <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">
+							<span property="schema:name">Wikidata</span>
+					</a>
+							and in this case we are 
+					trying to develop a more friendly application that will display a list of medical conditions-such as common diseases, allergies, 
+					food intolerances, obesity factors, disorders etc- and how this conditions can affect the human body, likewise the user can see
+					how a particular medical condition is influenced or not by geographical and / or cultural factors.
+				</p>
+				<p> The site will provide an important method of searching medical conditions only by introducing the symptoms, also will provide
+				recommendations about an optimal lifestyle-including both mind and body-and the user can see a dataset with approved drugs and 
+				their therapeutic indications.
+				</p>
+			</section>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		<section typeof="sa:Architecture">
+		        <section><h2>2. Architecture</h2></section>
+				<p>
+				The arhitecture is based on MVC design pattern.
+				<p>M-model (the way data is represented- ex: medicalEntityDTO, searchDTO- classes containing attributes)</p>
+				<p>V- view (the way the data is displayed in GUI)</p>
+				<p>C- controller (all methods used to manipulate the data )</p>
+				<p></p>
+				<p>The main modules of the application are: Medical conditions, Statistics, Search based on symptoms and Healthy Lifestyle.</p>
+
+
+				<p><a href="https://github.com/RamonaChiricioaei/Mad">
+							<span property="schema:name">MAd-Medical Web Advisor</span>
+					</a> is a client-server application that use external data repository. The main data is retrieved from <a href="http://dbpedia.org/">
+								<span property="schema:name">DBpedia</span>
+							</a>
+					 and
+					 <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">
+							<span property="schema:name">Wikidata</span>
+					</a>. 
+					An SPARQL Endpoint is used to retrieve data.
+
+
+					The client is implemented using JSF tehnology, javascript and ExpoFacts (to display the results).
+					On server, there is implemented a REST API that expose more methods used by client to obtain the information desired.
+				</p>
+				<p>
+					<figure typeof="sa:Image">
+		            <img src="Mad/Mad/Diagrams/Diagrama de arhitectura.png" width=730>
+		            <figcaption>
+		            <cite> Architecture diagram</cite>
+		            </figcaption>
+		        </figure> <br>
+				</p>
+	        	<p>
+					<figure typeof="sa:Image">
+		            <img src="Mad/Mad/Diagrams/Diagrama de clase.png" width=730>
+		            <figcaption>
+		            <cite> Class diagram</cite>
+		            </figcaption>
+		        </figure> <br>
+				</p>
+			</section>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			<section typeof="sa:KnowledgeSources">
+		        <section><h2>3. Knowledge sources</h2></section>
+	        	<p>
+				<a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">
+							<span property="schema:name">Wikidata</span>
+					</a> - some trivial SPARQLs	
+				<figure typeof="sa:Image">
+		            <img src="Mad/Images/SearchContinent.png" width=730>
+		            <figcaption>
+		            <cite> Search continent (for Statistics page) </cite>
+		            </figcaption>
+		        </figure> <br>
+				
+				<figure typeof="sa:Image">
+		            <img src="Mad/Images/diseases.png" width=730>
+		            <figcaption>
+		            <cite> Diseases </cite>
+		            </figcaption>
+		        </figure> <br>
+				</p>
+			</section>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        	<section typeof="sa:Conclusion">
+			        <h2>4. Conclusion</h2>
+			        <p>
+						<a href="https://github.com/RamonaChiricioaei/Mad">
+							<span property="schema:name">MAd-Medical Web Advisor</span>
+					</a> will be a site that provides useful informations from the medical branch for unknowing users and also for more experienced users.</p>
+					Medical conditions and how geographical/cultural factors can affect the human body are trivial things in this domain(because there are many specialized
+					sites in this area), but the non-trivial services are Searching based on symptoms and Approved drugs and their therapeutic indications.</p>
+					<p>
+					Service based architecture makes that this platform to be easily extended to something more important and more useful in medical domain.
+					
+			        </p>
+			</section>
+
+		</article>
+	</body>
+</html>
