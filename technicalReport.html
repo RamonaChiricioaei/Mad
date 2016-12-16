@@ -92,8 +92,9 @@
 	        	<p>
 					<section>1. Introduction </section>
 					<section>2. Architecture </section>
-					<section> 3. Knowledge sources </section>
-					<section> 4. Conclusion </section>
+					<section>3. Front-end </section>
+					<section>4. Knowledge sources </section>
+					<section>5. Conclusion </section>
 				</p>
 			</section>
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -167,9 +168,68 @@
 		        </figure> <br>
 				</p>
 			</section>
+			----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		<section typeof="sa:Architecture">
+		        <section><h2>3. Frond-end</h2></section>
+					Start page: contains all the important things that you can do in this application: Medical condition, Statistics, 
+					Search based on symptoms and Healthy lifestyle.
+					<p>Medical condition Page: contains 5 specific medical conditions: common diseases, allergies, food intolerances, obesity factors, disorders. 
+					In each of these pages you' ll find a sorted list of links of common diseases/allergies/food intolerances/obesity factors/disorders; by clicking
+					on a link a new page we'll be displayed; this page contains 4 more important things about the medical condition: Description, Cause, Symptoms,
+					Treatament and More information(nothing special here!).</p>
+					
+					<p>
+						<figure typeof="sa:Image">
+							<img src="Mad/Mock-ups/Common disease.png" width=730>
+							<figcaption>
+								<cite> Medical conditions page/Listed common diseases</cite>
+							</figcaption>
+						</figure> <br>
+					</p>
+					
+					<p>Statistics Page: here you can find how a medical condition can affect the human body based on specific conditions(geographical and cultural
+					factors): here we will use ExpoFacts and chart to display the dataset.</p>
+					<p>
+						<figure typeof="sa:Image">
+							<img src="Mad/Mock-ups/Find statistics.png" width=730>
+							<figcaption>
+								<cite> Statistics page</cite>
+							</figcaption>
+						</figure> <br>
+					</p>
+					<p>
+						<figure typeof="sa:Image">
+							<img src="Mad/Mock-ups/Find statistics-chart.png" width=730>
+							<figcaption>
+								<cite> Statistics page - Chart</cite>
+							</figcaption>
+						</figure> <br>
+					</p>
+					<p> Search based on symptoms Page: based on symptoms you selected the application we'll display medical conditions that have those symptoms.
+					<p>Healthy lifestyle Page: with three elements : body, mind and approved drugs. Body and mind represents suggestion for a healthy lifestyle and approved 
+					drugs is a dataset with drugs and their therapeutic indications.</p>
+					<p>
+						<figure typeof="sa:Image">
+							<img src="Mad/Mock-ups/Mind_Yoga.png" width=730>
+							<figcaption>
+								<cite> Mind page</cite>
+							</figcaption>
+						</figure> <br>
+					</p>
+					<p>
+						<figure typeof="sa:Image">
+							<img src="Mad/Mock-ups/Approved drugs.png" width=730>
+							<figcaption>
+								<cite> Approved drugs</cite>
+							</figcaption>
+						</figure> <br>
+					</p>
+			
+					
+		</section>
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			<section typeof="sa:KnowledgeSources">
-		        <section><h2>3. Knowledge sources</h2></section>
+		        <section><h2>4. Knowledge sources</h2></section>
 	        	<p>
 				<a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">
 							<span property="schema:name">Wikidata</span>
@@ -189,9 +249,12 @@
 		        </figure> <br>
 				</p>
 			</section>
+			<p>In order to create the specification of the API we used RAML3 because it offers a simple and 
+			intuitive way to describe the resources, methods, parameters and responses.
+			</p>
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         	<section typeof="sa:Conclusion">
-			        <h2>4. Conclusion</h2>
+			        <h2>5. Conclusions</h2>
 			        <p>
 						<a href="https://github.com/RamonaChiricioaei/Mad">
 							<span property="schema:name">MAd-Medical Web Advisor</span>
