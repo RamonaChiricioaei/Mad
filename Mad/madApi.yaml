@@ -1,0 +1,239 @@
+# this is an example of the MAd API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: MAd API
+  description: Move your app forward with the MAd API
+  version: "1.0.0"
+# the domain of the service
+host: api.uber.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /medicalConditions:
+    get:
+      summary: Medical Conditions Types
+      description: |
+        The Medical Conditions endpoint returns information about the *MAd* medical conditions types.
+        The response includes the display name of medical conditions and a lists of medicalEntitiy.
+      tags:
+        - medicalConditions
+      responses:
+        200:
+          description: An array of medicalEntity
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/medicalCondition'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /medicalConditions/{medicalEntityName}:
+     get:
+      summary: Medical Entity information
+      description: |
+        The Medical Entity endpoint returns a JSON object that contains information about the a specific medical entity (ex: HIV disease)
+      tags:
+        - medicalEntity
+      parameters:
+        - name: medicalEntityName
+          in: query
+          description: 'The name of medical entity.'
+          required: true
+          type: string
+          format: id
+      responses:
+        200:
+          description: All information about a medical entity
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/medicalEntity'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /medicalConditions/medicalEntity/causes
+     get:
+      summary: Causes for a medical entity (ex: causes for a disease)
+      description: |
+        The Causes endpoint returns all causes for a specific medical entity (ex: HIV disease)
+      tags:
+        - causes
+       parameters:
+        - name: medicalEntityName
+          in: query
+          description: 'The name of medicalEntity'
+          required: true
+          type: string
+          format: id
+      responses:
+        200:
+          description: All causes for a specific medical entity
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/medicalEntity/causes'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+   /search:
+    get:
+      summary: Search based on symtomps
+      description: |
+        The search based on symtomps endpoint returns all medical entities matchig the selected symtomps
+      tags:
+        - search
+       parameters:
+        - name: symtomps
+          in: path
+          description: 'All symtomps for search'
+          required: true
+          type: array<string>
+       responses:
+        200:
+          description: An array of medical entity matching the symtomps
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/search'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+            
+    /statistic
+     get:
+      summary: Show statistics
+      description: |
+        The statistic endpoint returns statistics taking into considertions some criterions
+      tags:
+        - statistics
+       parameters:
+        - name: area
+          in: query
+          description: 'Area for with statistic is made'
+          required: true
+          type: string
+        - name: climat
+          in: query
+          description: 'Climat taken into consideration for statistic'
+          required: false
+          type: string
+        - name: industrialDev
+          in: query
+          description: 'Industrial development taken into consideration for statistic'
+          required: false
+          type: string
+        - name: populationDensity
+          in: query
+          description: 'Population density taken into consideration for statistic'
+          required: false
+          type: string
+        - name: culturalFactors
+          in: query
+          description: 'Cultural factors taken into consideration for statistic'
+          required: false
+          type: string 
+       responses:
+        200:
+          description: A statistic based on all criterions entered
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/statistics'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+             
+            
+            
+definitions:
+  MedicalCondition:
+    type: object
+    properties:
+      type: object
+      properties:
+        symtomps:
+          category: string
+          description: The category of medical condition (ex: common disease, allergy,food intolerance, obesity factors, disorder)
+        medicalEntities:
+          type: array<string>
+          description: A list of medical entities
+          
+  MedicalEntity:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of medicalEntity (ex: HIV, Epilepsy, Hepatitis, MoldAlenrgy)
+      description:
+        type: string
+        description: Description of medicalEntity (a few words about a desease, allergy).
+      causes:
+        type: string
+        description: Causes for that medicalEntity (ex: stress, immunodeficiency).
+      symtomps:
+        type: string
+        description: The symtomps of a desease or another medicalEntity (ex: hunger,blurred vision).
+      treatment:
+        type: string
+        description: What treatment would be useful again a specific medicalEntity.
+      moreInf:
+        type: string
+        description: Link to more information.  
+        
+  StatisticEntity:
+    type: object
+    properties:
+      area:
+        type: array<string>
+        description:List of area (continent, country, town) 
+      climat:
+        type: array<string>
+        description: List of climat types (ex: C1, c2)
+      industrialDev:
+        type: string
+        description: Industrial development that should be taken into consideration or not
+      populationDensity:
+        type: string
+        description: Population density that should be taken into consideration or not 
+      culturalFactors:
+        type: string
+        description: Culturl Factors that should be taken into consideration or not 
+      mmedicalEntityName:
+        type: array<string>
+        description: A list of medical entity name as a result 
+        
+ SearchEntity:
+    type: object
+    properties:
+      symtomps:
+        type: array<string>
+        description: All symtomps that the search of a disease/allergy/ disorder is made.
+      searchResults:
+        type: array<string>
+        description: A list of medical entities tht match the symtomps enterd by user      
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string   
+ 
